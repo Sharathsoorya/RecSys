@@ -1,0 +1,342 @@
+/* static/styles.css */
+:root {
+    --primary: #007bff;
+    --primary-dark: #0056b3;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --muted: #f5f5f5;
+    --card-bg: #fff;
+    --max-width: 1100px;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #f7f8fa;
+    color: #222;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 20px auto;
+    padding: 0 16px 60px 16px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+h1 {
+    margin: 8px 0 18px 0;
+    font-size: 26px;
+    color: #111;
+}
+
+.user-line {
+    font-size: 14px;
+    color: #444;
+    background: #e9ecef;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.user-line a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.user-line a:hover {
+    text-decoration: underline;
+}
+
+.auth-section {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.auth-card {
+    background: var(--card-bg);
+    padding: 18px;
+    width: 360px;
+    box-shadow: 0 6px 20px rgba(10, 10, 10, 0.06);
+    border-radius: 10px;
+}
+
+.auth-card h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.auth-card button {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.auth-card button:hover {
+    background: var(--primary-dark);
+}
+
+.error {
+    color: #b00020;
+    margin: 6px 0;
+    padding: 8px;
+    background: #ffeaea;
+    border-radius: 4px;
+    border-left: 4px solid #b00020;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 20px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.search-form input[type="text"] {
+    width: 600px;
+    max-width: calc(100% - 220px);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.search-form input[type="file"] {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+}
+
+.search-form button {
+    padding: 10px 18px;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.search-form button:hover {
+    background: var(--primary-dark);
+}
+
+.search-info {
+    background: #e7f3ff;
+    border: 1px solid #b3d9ff;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0;
+    text-align: center;
+    color: #004085;
+}
+
+.table-container {
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(10, 10, 10, 0.06);
+    margin-bottom: 22px;
+    overflow-x: auto;
+}
+
+.markdown-table {
+    width: 100%;
+}
+
+.markdown-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.markdown-table th, .markdown-table td {
+    border: 1px solid #e6e6e6;
+    padding: 10px;
+    text-align: left;
+}
+
+.markdown-table th {
+    background: var(--muted);
+    font-weight: 600;
+    color: #333;
+}
+
+.markdown-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.markdown-table tr:hover {
+    background: #f0f0f0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 12px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(10, 10, 10, 0.04);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(10, 10, 10, 0.1);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.info {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.info p {
+    margin: 6px 0;
+}
+
+.info form {
+    display: inline-block;
+    margin-right: 8px;
+    margin-top: 6px;
+}
+
+.info button {
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.info button[type="submit"]:first-of-type {
+    background: var(--success);
+    color: white;
+}
+
+.info button[type="submit"]:first-of-type:hover {
+    background: #218838;
+}
+
+.info button[type="submit"]:last-of-type {
+    background: var(--primary);
+    color: white;
+}
+
+.info button[type="submit"]:last-of-type:hover {
+    background: var(--primary-dark);
+}
+
+.welcome-section {
+    text-align: center;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(10, 10, 10, 0.06);
+    margin: 20px 0;
+}
+
+.welcome-section h2 {
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.welcome-section p {
+    color: #666;
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+/* Section headers */
+section h2 {
+    color: #333;
+    margin: 24px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+/* small screens */
+@media (max-width: 700px) {
+    .container {
+        padding: 0 12px 40px 12px;
+    }
+    
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-form input[type="text"] {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .auth-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .auth-card {
+        width: 100%;
+        max-width: 420px;
+    }
+    
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+    
+    .card img {
+        height: 180px;
+    }
+    
+    .info form {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 6px;
+    }
+    
+    .info button {
+        width: 100%;
+    }
+}

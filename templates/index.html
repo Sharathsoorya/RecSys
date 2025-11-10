@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>FashionRAG</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="container">
+<header>
+    <h1>FashionRAG - Multimodal Fashion Search</h1>
+    {% if user %}
+        <div class="user-line">Welcome, {{ user }} • <a href="/logout">Logout</a></div>
+    {% endif %}
+</header>
+
+{% if not user %}
+<section class="auth-section">
+    <div class="auth-card">
+        <h2>Login</h2>
+        {% if login_error %}<p class="error">{{ login_error }}</p>{% endif %}
+        <form action="/login" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="show-register">Create account</a></p>
+    </div>
+
+    <div class="auth-card" id="register-block" style="display:none">
+        <h2>Create account</h2>
+        {% if register_error %}<p class="error">{{ register_error }}</p>{% endif %}
+        <form action="/register" method="post">
+            <input type="text" name="name" placeholder="Full name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm password" required>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</section>
+
+<script>
+document.getElementById("show-register").addEventListener("click", function(e){
+    e.preventDefault();
+    document.getElementById("register-block").style.display = "block";
+});
+</script>
+
+{% else %}
+<!-- LOGGED-IN VIEW -->
+<section class="search-section">
+    <form action="/search" method="post" enctype="multipart/form-data" class="search-form">
+        <input type="text" name="query" placeholder="Search by text..." value="{{ query or '' }}">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Search</button>
+    </form>
+</section>
+
+{% if comparison_table %}
+<section>
+    <h2>Comparison Table (LLM)</h2>
+    <div class="table-container">{{ comparison_table | safe }}</div>
+</section>
+{% endif %}
+
+{% if fav_suggestions and fav_suggestions|length > 0 %}
+<section>
+    <h2>Suggestions based on your favourites</h2>
+    <div class="grid-container">
+      {% for s in fav_suggestions %}
+        <div class="card">
+            <img src="{{ s.image_url }}" alt="Image">
+            <div class="info">
+                <p><b>{{ s.productDisplayName_x or s.product }}</b></p>
+                <p>Brand: {{ s.brandName }}</p>
+                <p>Price: ₹{{ s.price }}</p>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<section>
+    <h2>Results</h2>
+    <div class="grid">
+        {% for item in items %}
+        <div class="card">
+            <img src="{{ item.image_url }}" alt="Image">
+            <div class="info">
+                <p><b>{{ item.productDisplayName_x or item.product or item.Product }}</b></p>
+                <p>Brand: {{ item.brandName or item.BrandName }}</p>
+                <p>Price: ₹{{ item.price }}</p>
+
+                <form action="/buy" method="post">
+                    <input type="hidden" name="product" value="{{ item.productDisplayName_x or item.product or item.Product }}">
+                    <button type="submit">Buy</button>
+                </form>
+                <form action="/favourite" method="post">
+                    <input type="hidden" name="image_url" value="{{ item.image_url }}">
+                    <button type="submit">Add to Favourite</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+</div>
+</body>
+</html>
